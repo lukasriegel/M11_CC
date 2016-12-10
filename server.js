@@ -5,9 +5,17 @@ http.createServer(function (request, response) {
    // HTTP Status: 200 : OK
    // Content Type: text/plain
    response.writeHead(200, {'Content-Type': 'text/plain'});
-
-    // Send the response body as "Hello Cloud"
-    var processId = process.pid;
-    response.end('process id: '+processId); 
    
-}).listen(process.env.PORT);
+   if(request.method=='POST') {
+       // Send the response body as "Hello Cloud"
+        response.end('Wow, this was an awesome POST request!\n'); 
+   }
+   else
+   {
+        // Send the response body as "Hello Cloud"
+        response.end('Hello Cloud\n'); 
+   } 
+}).listen(8081);
+
+// Console will print the message
+console.log('Server running at http://127.0.0.1:8081/');
